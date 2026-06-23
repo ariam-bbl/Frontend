@@ -1,46 +1,41 @@
 <!DOCTYPE html>
-<html lang="nl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nederlandse Feestdagen</title>
+    <title>Steen Papier Schaar</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
             padding: 50px;
-            background-color: #f4f4f4;
+            background-color: #f9f9f9;
         }
         button {
             font-size: 18px;
             padding: 10px 25px;
-            margin-bottom: 30px;
+            margin: 10px;
             cursor: pointer;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-            max-width: 400px;
-            margin: 0 auto;
-            text-align: left;
-        }
-        li {
-            background-color: white;
-            padding: 12px;
-            margin-bottom: 8px;
-            border-radius: 4px;
-            border-left: 5px solid #007bff;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        .score-board {
+            font-size: 20px;
+            margin-bottom: 40px;
         }
     </style>
 </head>
 <body>
 
-    <h1>Nederlandse Feestdagen</h1>
-    
-    <button id="fetch-btn">Toon Feestdagen</button>
-    
-    <ul id="holidays-list"></ul>
+    <h1>Steen, Papier, Schaar</h1>
+
+    <div class="score-board">
+        <p>Computer: <span id="computer">?</span></p>
+        <p>Jij: <span id="human">?</span></p>
+        <p>Resultaat: <span id="result">Kies een optie!</span></p>
+    </div>
+
+    <button id="steen">Steen</button>
+    <button id="papier">Papier</button>
+    <button id="schaar">Schaar</button>
 
     <script src="script.js"></script>
 </body>
