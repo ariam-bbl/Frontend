@@ -1,64 +1,25 @@
-const computerOutput = document.querySelector("#computer");
-const humanOutput = document.querySelector("#human");
-const resultOutput = document.querySelector("#result");
-const buttons = document.querySelectorAll("button");
+const fetchButton = document.querySelector("#fetch-btn");
+const holidaysList = document.querySelector("#holidays-list");
 
-let humanChoice = "";
-let computerChoice = "";
-
-buttons.forEach(button => {
-    button.addEventListener("click", function(event) {
-        humanChoice = event.target.id;
-        humanOutput.innerHTML = humanChoice;
-        
-        generateComputerChoice();
-        determineWinner();
-    });
+fetchButton.addEventListener("click", function() {
+    fetch("https://date.nager.at/api/v3/PublicHolidays/2026/NL")
+        .then(response => {
+            if (!response.ok) {
+                throw new Error("Network response was not ok");
+            }
+            return response.json();
+        })
+        .then(data => {
+            holidaysList.innerHTML = ""; 
+            
+            data.forEach(holiday => {
+                const listItem = document.createElement("li");
+                listItem.innerHTML = `<strong>${holiday.date}</strong>: ${holiday.localName} (${holiday.name})`;
+                holidaysList.appendChild(listItem);
+            });
+        })
+        .catch(error => {
+            console.error("There was a problem with the fetch operation:", error);
+            holidaysList.innerHTML = "<li>Er is iets fout gegaan bij het laden.</li>";
+        });
 });
-
-function generateComputerChoice() {
-    const randomNumber = Math.floor(Math.random() * 3);
-    
-    if (randomNumber === 0) {
-        computerChoice = "steen";
-    } else if (randomNumber === 1) {
-        computerChoice = "papier";
-    } else if (randomNumber === 2) {
-        computerChoice = "schaar";
-    }
-    
-    computerOutput.innerHTML = computerChoice;
-}
-
-function determineWinner() {
-    if (humanChoice === computerChoice) {
-        resultOutput.innerHTML = "Gelijkspel!";
-        return;
-    }
-
-    switch (humanChoice) {
-        case "steen":
-            if (computerChoice === "schaar") {
-                resultOutput.innerHTML = "Je hebt gewonnen! Steen wint van schaar.";
-            } else {
-                resultOutput.innerHTML = "Computer heeft gewonnen! Papier wint van steen.";
-            }
-            break;
-            
-        case "papier":
-            if (computerChoice === "steen") {
-                resultOutput.innerHTML = "Je hebt gewonnen! Papier wint van steen.";
-            } else {
-                resultOutput.innerHTML = "Computer heeft gewonnen! Schaar wint van papier.";
-            }
-            break;
-            
-        case "schaar":
-            if (computerChoice === "papier") {
-                resultOutput.innerHTML = "Je hebt gewonnen! Schaar wint van papier.";
-            } else {
-                resultOutput.innerHTML = "Computer heeft gewonnen! Steen wint van schaar.";
-            }
-            break;
-    }
-}
