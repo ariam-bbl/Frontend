@@ -6,27 +6,100 @@
     <title>Steen Papier Schaar</title>
 
     <style>
+        
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             text-align: center;
-            padding: 50px;
-            background-color: #f9f9f9;
+            padding: 30px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            color: #333;
+            min-height: 100vh;
+            margin: 0;
         }
 
-        button {
+        h1 {
+            color: #2c3e50;
+            font-size: 2.5rem;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        /* لوحة النتائج العلوية */
+        .extra-info {
+            background-color: white;
+            padding: 15px;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: inline-flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+        }
+
+        .extra-info p {
+            margin: 5px 0;
+            font-weight: bold;
+            color: #7f8c8d;
+        }
+
+        .extra-info span {
+            color: #2980b9;
+            font-size: 1.2rem;
+        }
+
+        /* لوحة المواجهة الحالية */
+        .score-board {
+            background-color: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            max-width: 400px;
+            margin: 0 auto 40px auto;
+        }
+
+        .score-board p {
             font-size: 18px;
-            padding: 10px 25px;
+            margin: 10px 0;
+        }
+
+       
+        #result {
+            font-size: 24px;
+            font-weight: bold;
+            color: #27ae60;
+            display: block;
+            margin-top: 15px;
+            padding: 5px;
+        }
+
+       
+        button {
+            font-size: 20px;
+            padding: 15px 30px;
             margin: 10px;
             cursor: pointer;
+            border: none;
+            border-radius: 50px; 
+            color: white;
+            font-weight: bold;
+            transition: transform 0.2s, box-shadow 0.2s;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
 
-        .score-board {
-            font-size: 20px;
-            margin-bottom: 40px;
+        
+        #steen { background-color: #95a5a6; }
+        #papier { background-color: #3498db; } 
+        #schaar { background-color: #e74c3c; } 
+
+        
+        button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
         }
 
-        .extra-info {
-            margin-bottom: 30px;
+        button:active {
+            transform: translateY(1px);
         }
     </style>
 </head>
@@ -45,12 +118,13 @@
     <div class="score-board">
         <p>Computer: <span id="computer">?</span></p>
         <p>Jij: <span id="human">?</span></p>
-        <p>Resultaat: <span id="result">Kies een optie!</span></p>
+        <hr style="border: 0; border-top: 1px solid #eee; margin: 20px 0;">
+        <p><span id="result">Kies een optie!</span></p>
     </div>
 
-    <button id="steen">Steen</button>
-    <button id="papier">Papier</button>
-    <button id="schaar">Schaar</button>
+    <button id="steen">🪨 Steen</button>
+    <button id="papier">📄 Papier</button>
+    <button id="schaar">✂️ Schaar</button>
 
     <script src="script.js"></script>
 
